@@ -1,8 +1,12 @@
 package utilities;
+
 public class CurrencyConverter {
 
-    // i can't use default parameters in java and i'm too lazy to learn overloading
     public static double BatchConverterCOP (double amount, String[] targetCurrency) {
+        /** 
+            i can't use default parameters in java and i'm too lazy to learn overloading
+            usage: CurrencyConverter.BatchConverterCOP(1000000, new String[]{"USD", "EUR", "BRL"});
+        */
         double convertedAmount = -1;
 
         // per request: constant exchange rates (updated 2/Jun)
