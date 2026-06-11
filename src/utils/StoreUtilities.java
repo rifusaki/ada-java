@@ -1,4 +1,4 @@
-package utilities;
+package utils;
 
 public class StoreUtilities {
     private static final double vatRate = 0.19; // 19% VAT rate
