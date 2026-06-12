@@ -28,11 +28,11 @@ public class Calculators {
         return category;
     }
 
-    public static String assistanceAwareGrading(double grade, double assistanceRate) {
-        if (grade >= 3.0 && assistanceRate >= 0.75) return "passed";
-        else if (grade >= 3.0) return "failed_assistance";
-        else if (assistanceRate >= 0.75) return "failed_grade";
-        else return "failed_both";
+    public static GradeStatus assistanceAwareGrading(double grade, double assistanceRate) {
+        if (grade >= 3.0 && assistanceRate >= 0.75) return GradeStatus.PASS;
+        else if (grade >= 3.0) return GradeStatus.FAIL;
+        else if (assistanceRate >= 0.75) return GradeStatus.FAIL;
+        else return GradeStatus.INVALID;
     }
 
     public static double ComputeArea (double length, double width) {

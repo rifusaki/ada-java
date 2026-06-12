@@ -1,4 +1,5 @@
 import utils.Calculators;
+import utils.GradeStatus;
 import utils.Input;
 import utils.Output;
 
@@ -12,7 +13,7 @@ public class Main {
 
         String gradeCategory = Calculators.gradeCategorization(finalGrade);
         double assistanceRate = generalInput.getAssistanceRate();
-        String outcome = Calculators.assistanceAwareGrading(finalGrade, assistanceRate);
+        GradeStatus outcome = Calculators.assistanceAwareGrading(finalGrade, assistanceRate);
 
         Output.printAssistanceAwareGrading(finalGrade, gradeCategory, assistanceRate, outcome);
 
