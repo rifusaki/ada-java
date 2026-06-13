@@ -1,5 +1,8 @@
 package archive;
 
+import utils.Calculators;
+import utils.GradeStatus;
+
 public class HelloWorld {
     
     // why hello world when you can izutsumi
@@ -16,7 +19,7 @@ public class HelloWorld {
     Object[] vars = {definitelyNotTheNumberTwo, theFullLenghtOfPi, isMyCatSleeping, alejandroChar, blorbo};
     for (Object var : vars) System.out.println(var);
 
-    /**
+    
     double[][] gradeData = generalInput.getGradeInputs();
     double finalGrade = Calculators.DynamicAverage(gradeData);
 
@@ -25,7 +28,7 @@ public class HelloWorld {
     GradeStatus outcome = Calculators.assistanceAwareGrading(finalGrade, assistanceRate);
 
     Output.printAssistanceAwareGrading(finalGrade, gradeCategory, assistanceRate, outcome);
-    */
+    
 
     // int limit = generalInput.genericPositiveIntInput("Enter limit for multiples of 5: ");
     // Loops.highlightMultiplesOfFive(limit);
@@ -42,5 +45,15 @@ public class HelloWorld {
         // int[] counts = Misc.evenOddCounter(intArray);
         
         // Output.printEvenOddCounter(counts);
+
+
+    double[][] gradeData = generalInput.getGradeInputs();
+    double finalGrade = Calculators.DynamicAverage(gradeData);
+
+    String gradeCategory = Calculators.gradeCategorization(finalGrade);
+    double assistanceRate = generalInput.getAssistanceRate();
+    GradeStatus outcome = Calculators.assistanceAwareGrading(finalGrade, assistanceRate);
+
+    Output.printAssistanceAwareGrading(finalGrade, gradeCategory, assistanceRate, outcome);
 
 }

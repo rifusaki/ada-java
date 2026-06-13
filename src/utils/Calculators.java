@@ -28,6 +28,12 @@ public class Calculators {
         return category;
     }
 
+    public static GradeStatus simpleGrading(double grade) {
+        if (grade >= 3.0) return GradeStatus.PASS;
+        else if (grade >= 0.0) return GradeStatus.FAIL;
+        else return GradeStatus.INVALID;
+    }
+
     public static GradeStatus assistanceAwareGrading(double grade, double assistanceRate) {
         if (grade >= 3.0 && assistanceRate >= 0.75) return GradeStatus.PASS;
         else if (grade >= 3.0) return GradeStatus.FAIL;
@@ -37,5 +43,17 @@ public class Calculators {
 
     public static double ComputeArea (double length, double width) {
         return length * width;
+    }
+
+    public static double[] multipleDynamicAverage(double[][][] inputData) {
+        double[][] studentsGrades = inputData[0];
+        double[] weights = inputData[1][0];
+        
+        double[] finalAverages = new double[studentsGrades.length];
+        
+        for (int i = 0; i < studentsGrades.length; i++) {
+            finalAverages[i] = DynamicAverage(new double[][] { studentsGrades[i], weights });
+        }
+        return finalAverages;
     }
 }

@@ -22,7 +22,25 @@ public class Output {
         }
     }
 
+    public static void printSimpleGrading(double grade, String gradeCategory, GradeStatus outcome) {
+        switch (outcome) {
+            case PASS ->
+                System.out.println("You passed with a %.2f (%s)".formatted(grade, gradeCategory));
+            case FAIL ->
+                System.out.println("You failed with a %.2f (%s)".formatted(grade, gradeCategory));
+            default ->
+                System.out.println("Invalid: " + outcome);
+        }
+    }
+
     public static void printEvenOddCounter(int[] counts) {
         System.out.println("%d even numbers, %d odd numbers".formatted(counts[0], counts[1]));
+    }
+
+    public static void printMultipleStudentsAverages(double[] averages) {
+        int studentNumber = 1;
+        for (double average : averages) {
+            System.out.println("Student %d final grade: %.2f".formatted(studentNumber++, average));
+        }
     }
 }

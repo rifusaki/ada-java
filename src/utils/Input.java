@@ -35,7 +35,7 @@ public class Input {
         }
 
         for (int i = 0; i < numGrades; i++) {
-            grades[i] = genericDoubleInput("Grade " + (i + 1) + ": ");
+            grades[i] = genericDoubleInput("Grade %d: ".formatted(i + 1));
         }
 
         if (isWeighted) {
@@ -58,27 +58,6 @@ public class Input {
             
             System.out.println("Invalid input. Please enter a value between 0 and 1.");
         }
-    }
-
-    public double genericDoubleInput(String prompt) {
-        while (true) {
-            System.out.print(prompt);
-            try {
-                return Double.parseDouble(scanner.nextLine());
-            } catch (NumberFormatException e) {
-                System.out.println("Invalid input. Please enter a valid number.");
-            }
-        }
-    }
-
-    public double[] genericDoubleArrayInput(int size, String itemLabel) {
-        double[] numbers = new double[size];
-
-        for (int i = 0; i < size; i++) {
-            numbers[i] = genericDoubleInput(itemLabel + (i + 1) + ": ");
-        }
-
-        return numbers;
     }
 
     public int genericIntInput(String prompt) {
@@ -113,5 +92,44 @@ public class Input {
         }
         
         return numbers;
+    }
+
+    public double genericDoubleInput(String prompt) {
+        while (true) {
+            System.out.print(prompt);
+            try {
+                return Double.parseDouble(scanner.nextLine());
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input. Please enter a valid number.");
+            }
+        }
+    }
+
+    public double[] genericDoubleArrayInput(int size, String itemLabel) {
+        double[] numbers = new double[size];
+
+        for (int i = 0; i < size; i++) {
+            numbers[i] = genericDoubleInput("%s%d: ".formatted(itemLabel, i + 1));
+        }
+
+        return numbers;
+    }
+
+    // weird thing: we have an outer array double[] containing each a two-dimensional array double[][] (we use one for students+grades and one for weights)
+    public double[][][] multipleStudentWeightedAverage() {
+        int numStudents = genericPositiveIntInput("How many students? ", Integer.MAX_VALUE);
+        int numGrades = genericPositiveIntInput("How many grades per student? ", Integer.MAX_VALUE);
+
+        System.out.println("Sum of weights should be 1:");
+        double[] weights = genericDoubleArrayInput(numGrades, "Weight ");
+
+        double[][] studentsGrades = new double[numStudents][numGrades];
+
+        for (int i = 0; i < numStudents; i++) {
+            System.out.println("Entering grades for Student %d:".formatted(i + 1));
+            studentsGrades[i] = genericDoubleArrayInput(numGrades, "Grade ");
+        }
+
+        return new double[][][] { studentsGrades, new double[][] { weights } };
     }
 }
