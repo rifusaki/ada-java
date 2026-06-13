@@ -21,4 +21,8 @@ public class Output {
                 System.out.println("Invalid: " + outcome);
         }
     }
+
+    public static void printEvenOddCounter(int[] counts) {
+        System.out.println("%d even numbers, %d odd numbers".formatted(counts[0], counts[1]));
+    }
 }
