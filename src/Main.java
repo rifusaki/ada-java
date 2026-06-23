@@ -1,16 +1,22 @@
-import utils.Calculators;
 import utils.Input;
-import utils.Output;
+import utils.BankAccount;
 
 public class Main {
     public static void main (String[] args) {
+        Input input = new Input();
+        double initialDeposit = input.limitedAttemptsDoubleInput("Enter initial deposit amount: ", 3);
 
-    Input generalInput = new Input();
+        BankAccount account = new BankAccount(initialDeposit);
 
-    double[][][] inputData = generalInput.multipleStudentWeightedAverage();
-    double[] finalAverages = Calculators.multipleDynamicAverage(inputData);
-    Output.printMultipleStudentsAverages(finalAverages);
+        double withdrawalAmount = input.limitedAttemptsDoubleInput("Enter withdrawal amount: ", 3);
 
+        try {
+            double withdrawal = BankAccount.withdraw(account, withdrawalAmount);
+            System.out.println("Withdrawal successful. Amount withdrawn: %.2f".formatted(withdrawal));
+        } catch (BankAccount.insufficientFunds e) {
+            System.out.println(e.getMessage());
+        } finally {
+            System.out.println("Final account balance: %.2f".formatted(account.balance));
+        }
     }
-
 }

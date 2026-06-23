@@ -71,6 +71,27 @@ public class Input {
         }
     }
 
+    public int limitedAttemptsIntInput(String prompt, int maxAttempts) {
+        int counter = 0;
+        
+        do {
+            System.out.print(prompt);
+            System.out.println("(Attempt %d of %d)".formatted(counter + 1, maxAttempts));
+
+            try {
+                return Integer.parseInt(scanner.nextLine());
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input. Please enter a valid integer.\n");
+            }
+
+            counter++;
+
+        } while (counter < maxAttempts);
+
+        throw new RuntimeException("Maximum attempts reached. Exiting.");
+
+    }
+
     public int genericPositiveIntInput(String prompt, int limit) {
         while (true) {
             int input = genericIntInput(prompt);
@@ -103,6 +124,27 @@ public class Input {
                 System.out.println("Invalid input. Please enter a valid number.");
             }
         }
+    }
+
+    public double limitedAttemptsDoubleInput(String prompt, int maxAttempts) {
+        int counter = 0;
+        
+        do {
+            System.out.print(prompt);
+            System.out.println("(Attempt %d of %d)".formatted(counter + 1, maxAttempts));
+
+            try {
+                return Double.parseDouble(scanner.nextLine());
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input. Please enter a valid double.\n");
+            }
+
+            counter++;
+
+        } while (counter < maxAttempts);
+
+        throw new RuntimeException("Maximum attempts reached. Exiting.");
+
     }
 
     public double[] genericDoubleArrayInput(int size, String itemLabel) {
